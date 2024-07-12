@@ -11,16 +11,19 @@ import { Router } from '@angular/router';
 export class AppComponent {
   private authService = inject(AuthService);
   private router      = inject(Router);
-  
+
   public finishAuthCheck = computed<boolean>(()=>{
-    if(this.authService.authStatus() === AuthStatus.checking)return false;
+    if ( this.authService.authStatus() === AuthStatus.checking ) {
+      return false;
+    }
     return true;
   });
 
   //effect es como el useEffect en angular, se ejecuta cuando inicia el componente y cuando cambia la deoendncia
-  public authStatusChangedEffect = effect(() =>{
-    // console.log(this.authService.authStatus())
-    switch(this.authService.authStatus()){
+  public authStatusChangedEffect = effect(() => {
+
+    switch( this.authService.authStatus() ) {
+
       case AuthStatus.checking:
         return;
 
@@ -31,6 +34,7 @@ export class AppComponent {
       case AuthStatus.nonAuthenticated:
         this.router.navigateByUrl('/auth/login');
         return;
+
     }
   })
 

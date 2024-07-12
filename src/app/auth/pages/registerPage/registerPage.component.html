@@ -1,1 +1,90 @@
-tes
+<div class="container-login" style="background-color: black;">
+  <div class="container">
+    <form [formGroup]="myForm" (ngSubmit)="onRegister()">
+    <div class="row">
+      <h2 class="text-center text-warning">Sign In</h2>
+    </div>
+    <div class="row justify-content-center mt-4">
+      <div class="col-7 col-md-4">
+        <input formControlName="firstName" type="text" class="form-control text-center inputAuthForm" placeholder="First Name">
+        <div *ngIf="isNotValidField('firstName')" class="form-text text-warning">
+          {{getFieldError('firstName')}}
+        </div>
+      </div>
+      <div class="col-7 col-md-4">
+        <input formControlName="lastName" type="text" class="form-control text-center inputAuthForm" placeholder="Last Name">
+        <div *ngIf="isNotValidField('lastName')" class="form-text text-warning">
+          {{getFieldError('lastName')}}
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-2">
+      <div class="col-7  col-md-4  text-center">
+        <p-calendar formControlName="date" class="custom-calendar" [showIcon]="true" inputId="buttondisplay" [showOnFocus]="false" dateFormat="dd.mm.yy"  [maxDate]="maxDate" />
+        <div *ngIf="isNotValidField('date')" class="form-text text-warning">
+          {{getFieldError('date')}}
+        </div>
+      </div>
+      <div class="col-6 col-md-4  text-center text-warning mt-2">
+              <p-radioButton
+                  value="user"
+                  formControlName="role"/>
+              <label for="ingredient1" class="genderLabel">
+                  User
+              </label>
+              <p-radioButton
+                  value="admin"
+                  inputId="ingredient2"
+                  formControlName="role"/>
+              <label for="ingredient2" class="genderLabel">
+                  Admin
+              </label>
+              <div *ngIf="isNotValidField('role')" class="form-text text-warning">
+                {{getFieldError('role')}}
+              </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-2">
+      <div class="col-7 col-md-8">
+        <input formControlName="email" type="email" class="form-control text-center inputAuthForm" placeholder="Email">
+        <div *ngIf="isNotValidField('email')" class="form-text text-warning">
+          {{getFieldError('email')}}
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-2">
+      <div class="col-7 col-md-4 ">
+        <input formControlName="password" type="password" class="form-control text-center inputAuthForm" placeholder="Password">
+        <div *ngIf="isNotValidField('password')" class="form-text text-warning">
+          {{getFieldError('password')}}
+        </div>
+        <div *ngIf="!passwordEquals()" class="form-text text-warning">
+          The passsowrd and confirm passsowrd must be equal
+        </div>
+      </div>
+      <div class="col-7 col-md-4 ">
+        <input formControlName="confirmPassword" type="password" class="form-control text-center inputAuthForm" placeholder="Confirm Password">
+        <div *ngIf="isNotValidField('confirmPassword')" class="form-text text-warning">
+          {{getFieldError('confirmPassword')}}
+        </div>
+        <div *ngIf="!passwordEquals()" class="form-text text-warning">
+          The passsowrd and confirm passsowrd must be equal
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row justify-content-center mt-4">
+      <div class="d-grid gap-2 col-3 mx-auto">
+        <button  type="submit" [disabled]="myForm.invalid" class="btn btn-warning">Register</button>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-2">
+      <div class="col-12 text-center text-warning" >
+        <a (click)="toLogin()">¿You not have an account?</a>
+      </div>
+  </div>
+  </form>
+  </div>
+</div>

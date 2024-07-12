@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    RouterModule
   ]
 })
 export class DashboardModule { }
